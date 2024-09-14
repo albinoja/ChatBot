@@ -1,14 +1,12 @@
 <template>
   <div class="flex flex-col h-screen bg-gray-200">
     <div class="ventana-chat bg-white w-full max-w-md flex flex-col h-full">
-      <!-- Encabezado del chat -->
       <div class="encabezado-chat bg-blue-600 text-white">
         <div class="contenido-encabezado flex items-center justify-between p-4">
           <h1 class="text-lg font-semibold">ChatBot ULS 2024</h1>
         </div>
       </div>
 
-      <!-- Cuerpo del chat donde se mostrarán los mensajes -->
       <div class="cuerpo-chat flex-1 p-4 overflow-y-auto">
         <div v-if="cargando" class="text-center text-gray-500">Cargando...</div>
 
@@ -39,8 +37,6 @@
           </p>
         </div>
       </div>
-
-      <!-- Input para el mensaje del usuario -->
       <div
         class="pie-chat bg-gray-100 border-t border-gray-300 flex items-center p-2"
       >
@@ -65,11 +61,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const mensajeUsuario = ref(""); // Mensaje del usuario
+const mensajeUsuario = ref("");
 const mensajes = ref<
   { gif: string | null; texto: string; remitente: "usuario" | "bot" }[]
->([]); // Lista de mensajes
-const cargando = ref(false); // Estado de carga
+>([]);
+const cargando = ref(false);
 
 const enviarMensaje = async () => {
   if (mensajeUsuario.value.trim() === "") {
@@ -105,11 +101,11 @@ const enviarMensaje = async () => {
 .ventana-chat {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
+  height: 100vh;
 }
 
 .cuerpo-chat {
-  flex: 1; /* Ocupa el espacio disponible entre el encabezado y el pie del chat */
+  flex: 1;
   padding: 1rem;
   overflow-y: auto;
 }
@@ -117,33 +113,33 @@ const enviarMensaje = async () => {
 .pie-chat {
   background-color: #f1f1f1;
   border-top: 1px solid #ddd;
-  position: relative; /* Cambiado de sticky a relative para evitar problemas */
+  position: relative;
   bottom: 0;
   display: flex;
   align-items: center;
 }
 
 .pie-chat input {
-  flex: 1; /* Asegura que el campo de texto ocupe el espacio disponible */
-  margin-right: 0.5rem; /* Espacio entre el campo de texto y el botón */
-  padding: 0.5rem 1rem; /* Ajusta el relleno del campo de texto */
-  border-radius: 9999px; /* Redondeo completo del borde */
+  flex: 1;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
 }
 
 .pie-chat button {
-  flex-shrink: 0; /* Impide que el botón se reduzca en tamaño */
-  padding: 0.5rem 1rem; /* Ajusta el tamaño del botón */
-  background-color: #34d399; /* Verde claro */
-  color: white; /* Texto blanco */
-  border-radius: 9999px; /* Redondeo completo del borde */
-  border: none; /* Sin borde por defecto */
-  font-weight: bold; /* Texto en negrita */
-  font-size: 0.875rem; /* Tamaño del texto */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  background-color: #34d399;
+  color: white;
+  border-radius: 9999px;
+  border: none;
+  font-weight: bold;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
 .pie-chat button:hover {
-  background-color: #10b981; /* Verde más oscuro al pasar el ratón */
+  background-color: #10b981;
 }
 
 .mensaje {
@@ -161,7 +157,7 @@ const enviarMensaje = async () => {
 }
 
 .mensaje-bot {
-  background-color: #f0f0f0; /* Gris para el bot */
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -169,51 +165,50 @@ const enviarMensaje = async () => {
   max-width: 80%;
   border-radius: 12px;
   padding: 0.5rem;
-  word-wrap: break-word; /* Permite que el texto largo se ajuste dentro de la burbuja */
+  word-wrap: break-word;
 }
 
 .contenido-mensaje-bot {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-radius: 12px; /* Bordes redondeados para el contenedor del mensaje del bot */
-  background-color: #f0f0f0; /* Fondo gris claro para el mensaje del bot */
+  border-radius: 12px;
+  background-color: #f0f0f0;
   padding: 0.5rem;
 }
 
 .texto-mensaje {
-  font-family: "Roboto", sans-serif; /* Cambia la fuente del texto */
-  text-align: left; /* Alinea el texto a la izquierda para las burbujas del bot */
+  font-family: "Roboto", sans-serif;
+  text-align: left;
   padding: 0.5rem;
-  border-radius: 12px; /* Bordes redondeados para el texto */
-  background-color: inherit; /* Asegura que el texto herede el fondo del contenedor */
+  border-radius: 12px;
+  background-color: inherit;
 }
 
 .texto-usuario {
-  background-color: #e0f7fa; /* Celeste para el usuario */
-  border-radius: 12px; /* Bordes redondeados para la burbuja del usuario */
+  background-color: #e0f7fa;
+  border-radius: 12px;
   padding: 0.5rem;
-  max-width: 70%; /* Limita el ancho máximo de la burbuja */
-  word-wrap: break-word; /* Permite que el texto largo se ajuste dentro de la burbuja */
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
 .gif-mensaje {
-  width: 100%; /* Ajusta el ancho del GIF */
-  max-width: 200px; /* Limita el ancho máximo del GIF */
-  height: auto; /* Mantiene la relación de aspecto */
-  border-radius: 12px; /* Bordes redondeados para el GIF */
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 12px;
 }
 
-/* Estilo para el encabezado */
 .encabezado-chat {
-  background-color: #4f7cf7; /* Azul para el encabezado */
-  width: 100%; /* Asegura que el encabezado ocupe todo el ancho */
-  border-bottom: 1px solid #ddd; /* Línea de borde inferior */
+  background-color: #4f7cf7;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
 }
 
 .contenido-encabezado {
-  width: 100%; /* Asegura que el contenido del encabezado ocupe todo el ancho */
-  color: rgb(255, 255, 255); /* Color del texto en blanco */
+  width: 100%;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 </style>
